@@ -10,4 +10,5 @@
         android:name="com.example.customfortune.uicontrollers.TitleFragment"
         android:label="fragment_title"
         tools:layout="@layout/fragment_title" />
+
 </navigation>
