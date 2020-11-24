@@ -1,9 +1,9 @@
 plugins {
     id 'com.android.application'
     id 'kotlin-android'
+    id 'kotlin-kapt'
+    id 'androidx.navigation.safeargs'
 }
-
-apply plugin: 'kotlin-kapt'
 
 android {
     compileSdkVersion 30
@@ -56,6 +56,9 @@ dependencies {
     // Navigation
     implementation 'androidx.navigation:navigation-fragment-ktx:2.2.2'
     implementation 'androidx.navigation:navigation-ui-ktx:2.2.2'
+
+    // Material Design
+    implementation "com.google.android.material:material:$version_material"
 
     // Room and Lifecycle dependencies
     implementation "androidx.room:room-runtime:$version_room"
