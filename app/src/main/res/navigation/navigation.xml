@@ -8,8 +8,8 @@
     <fragment
         android:id="@+id/titleFragment"
         android:name="com.example.customfortune.uicontrollers.TitleFragment"
-        android:label="fragment_title"
-        tools:layout="@layout/fragment_title" >
+        android:label="@string/title"
+        tools:layout="@layout/fragment_title">
         <action
             android:id="@+id/action_titleFragment_to_resultFragment"
             app:destination="@id/resultFragment" />
@@ -17,7 +17,12 @@
     <fragment
         android:id="@+id/resultFragment"
         android:name="com.example.customfortune.uicontrollers.ResultFragment"
-        android:label="fragment_result"
+        android:label="@string/title"
         tools:layout="@layout/fragment_result" />
+    <fragment
+        android:id="@+id/aboutFragment"
+        android:name="com.example.customfortune.uicontrollers.AboutFragment"
+        android:label="@string/title_about"
+        tools:layout="@layout/fragment_about" />
 
 </navigation>
