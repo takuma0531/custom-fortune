@@ -2,4 +2,7 @@
     <string name="app_name">Custom Fortune</string>
     <string name="title">Custom Fortune</string>
     <string name="text_start">Start</string>
+    <string name="text_result_title">Today\'s Fortune</string>
+    <string name="text_image_alt">An image should be shown here.</string>
+    <string name="text_restart">Can\'t Agree</string>
 </resources>
