@@ -1,6 +1,7 @@
 package com.example.customfortune.database.card
 
 import androidx.room.*
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface CardDao {
@@ -8,7 +9,7 @@ interface CardDao {
     suspend fun get(key: Long): Card?
 
     @Query("SELECT * from card_table")
-    suspend fun getAll(): List<Card>?
+    suspend fun getAll(): Flow<List<Card>>
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insert(card: Card)
