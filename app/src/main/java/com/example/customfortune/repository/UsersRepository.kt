@@ -3,10 +3,11 @@ package com.example.customfortune.repository
 import androidx.annotation.WorkerThread
 import com.example.customfortune.database.user.User
 import com.example.customfortune.database.user.UserDao
+import kotlinx.coroutines.flow.Flow
 
 class UsersRepository(private val userDao: UserDao) {
     @WorkerThread
-    suspend fun get(key: Long): User? {
+    fun get(key: Long): Flow<User> {
         return userDao.get(key)
     }
 

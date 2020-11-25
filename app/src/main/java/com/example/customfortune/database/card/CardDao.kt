@@ -9,7 +9,7 @@ interface CardDao {
     fun getAll(): Flow<List<Card>>
 
     @Query("SELECT * from card_table WHERE cardId = :key")
-    suspend fun get(key: Long): Card?
+    fun get(key: Long): Flow<Card>
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insert(card: Card)

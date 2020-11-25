@@ -1,11 +1,12 @@
 package com.example.customfortune.database.user
 
 import androidx.room.*
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface UserDao {
     @Query("SELECT * from user_table WHERE userId = :key")
-    suspend fun get(key: Long): User?
+    fun get(key: Long): Flow<User>
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insert(user: User)

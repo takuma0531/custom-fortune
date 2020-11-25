@@ -9,7 +9,7 @@ class CardsRepository(private val cardDao: CardDao) {
     val cards: Flow<List<Card>> = cardDao.getAll()
 
     @WorkerThread
-    suspend fun get(key: Long): Card? {
+    fun get(key: Long): Flow<Card> {
         return cardDao.get(key)
     }
 
