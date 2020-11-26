@@ -10,8 +10,8 @@ data class Card(val img: String, val desc: String) {
     var cardId: Long? = null
 
     @ColumnInfo(name = "image")
-    val image: String = img
+    var image: String = img
 
     @ColumnInfo(name = "description")
-    val description: String = desc
+    var description: String = desc
 }

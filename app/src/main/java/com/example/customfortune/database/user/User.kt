@@ -10,5 +10,5 @@ data class User(val name: String) {
     var userId: Long? = null
 
     @ColumnInfo(name = "nickname")
-    val nickname: String = name
+    var nickname: String = name
 }

@@ -11,5 +11,5 @@ data class Color(val col: Int) {
     var colorId: Long? = null
 
     @ColumnInfo(name = "color")
-    val color: Int = col
+    var color: Int = col
 }
