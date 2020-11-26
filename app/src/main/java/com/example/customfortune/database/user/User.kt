@@ -5,10 +5,10 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 @Entity(tableName = "user_table")
-data class User(
+data class User(val name: String) {
     @PrimaryKey(autoGenerate = true)
-    var userId: Long = 0L,
+    var userId: Long? = null
 
     @ColumnInfo(name = "nickname")
-    val nickname: String
-)
+    val nickname: String = name
+}
