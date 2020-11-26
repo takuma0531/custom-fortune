@@ -27,7 +27,9 @@ public abstract class FortuneDatabase: RoomDatabase() {
                 scope.launch {
                     val cardDao = database.cardDao()
 
+                    // populate sample data that user can edit later
                     var card = Card("sample_image", "Excellent day")
+                    cardDao.insert(card)
                 }
             }
         }
@@ -43,7 +45,9 @@ public abstract class FortuneDatabase: RoomDatabase() {
                     context.applicationContext,
                     FortuneDatabase::class.java,
                     "fortune_database"
-                ).build()
+                )
+                    .addCallback(FortuneDatabaseCallBack(scope))
+                    .build()
 
                 INSTANCE = instance
 
