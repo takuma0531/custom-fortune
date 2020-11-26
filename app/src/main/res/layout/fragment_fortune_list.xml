@@ -13,6 +13,7 @@
             android:layout_height="match_parent"
             android:layout_marginTop="16dp"
             android:layout_marginBottom="16dp"
+            tools:listitem="@layout/fragment_fortune_card"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintLeft_toLeftOf="parent"

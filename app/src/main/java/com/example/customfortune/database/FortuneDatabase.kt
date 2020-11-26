@@ -10,6 +10,7 @@ import com.example.customfortune.database.color.Color
 import com.example.customfortune.database.color.ColorDao
 import com.example.customfortune.database.user.User
 import com.example.customfortune.database.user.UserDao
+import kotlinx.coroutines.CoroutineScope
 
 @Database(entities = [Card::class, Color::class, User::class], version = 1, exportSchema = false)
 public abstract class FortuneDatabase: RoomDatabase() {
@@ -21,7 +22,7 @@ public abstract class FortuneDatabase: RoomDatabase() {
         @Volatile
         private var INSTANCE: FortuneDatabase? = null
 
-        fun getDatabase(context: Context): FortuneDatabase {
+        fun getDatabase(context: Context, scope: CoroutineScope): FortuneDatabase {
             return INSTANCE ?: synchronized(this) {
                 val instance = Room.databaseBuilder(
                     context.applicationContext,
