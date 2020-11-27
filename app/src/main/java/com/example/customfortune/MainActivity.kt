@@ -10,19 +10,30 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.NavigationUI
 import com.example.customfortune.databinding.ActivityMainBinding
+import com.example.customfortune.utils.DependencyService
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
-    private lateinit var drawerLayout: DrawerLayout
     private lateinit var appBarConfiguration : AppBarConfiguration
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
 
-        drawerLayout = binding.drawerLayout
+        setupDatabase()
+        setupNavigation()
+    }
 
+    override fun onSupportNavigateUp(): Boolean {
         val navController = this.findNavController(R.id.nav_host_fragment)
+
+        return NavigationUI.navigateUp(navController, appBarConfiguration)
+    }
+
+    private fun setupNavigation() {
+        val drawerLayout = binding.drawerLayout
+        val navController = this.findNavController(R.id.nav_host_fragment)
+
         NavigationUI.setupActionBarWithNavController(this, navController, drawerLayout)
         appBarConfiguration = AppBarConfiguration(navController.graph, drawerLayout)
 
@@ -37,9 +48,7 @@ class MainActivity : AppCompatActivity() {
         NavigationUI.setupWithNavController(binding.navView, navController)
     }
 
-    override fun onSupportNavigateUp(): Boolean {
-        val navController = this.findNavController(R.id.nav_host_fragment)
-
-        return NavigationUI.navigateUp(navController, appBarConfiguration)
+    private fun setupDatabase() {
+        DependencyService.getDatabase(this)
     }
 }

@@ -15,7 +15,7 @@ object DependencyService {
     private val applicationScope = CoroutineScope(SupervisorJob())
     private lateinit var database: FortuneDatabase
 
-    fun init(activity: AppCompatActivity) {
+    fun getDatabase(activity: AppCompatActivity) {
         database = FortuneDatabase.getDatabase(activity, applicationScope)
     }
 
