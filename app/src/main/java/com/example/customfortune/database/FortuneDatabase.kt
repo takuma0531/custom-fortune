@@ -15,7 +15,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-@Database(entities = [Card::class, Color::class, User::class], version = 1)
+@Database(entities = [Card::class, Color::class, User::class], version = 1, exportSchema = false)
 public abstract class FortuneDatabase : RoomDatabase() {
     abstract fun cardDao(): CardDao
     abstract fun colorDao(): ColorDao

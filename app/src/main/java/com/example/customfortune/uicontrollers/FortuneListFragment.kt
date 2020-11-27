@@ -26,12 +26,12 @@ class FortuneListFragment : Fragment() {
     ): View? {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_fortune_list, container, false)
 
+        setupViewModel()
+
         val recyclerView = binding.fortuneList
         adapter = CardListAdapter()
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(context)
-
-        setupViewModel()
 
         return binding.root
     }
@@ -45,6 +45,6 @@ class FortuneListFragment : Fragment() {
     }
 
     private fun setupViewModel() {
-        viewModel = DependencyService.serveCardViewModel(activity = MainActivity())
+        viewModel = DependencyService.serveCardViewModel((activity as MainActivity?)!!)
     }
 }
