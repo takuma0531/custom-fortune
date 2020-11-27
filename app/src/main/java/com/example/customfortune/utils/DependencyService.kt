@@ -12,11 +12,14 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.SupervisorJob
 
 object DependencyService {
+    private val applicationScope = CoroutineScope(SupervisorJob())
+    private lateinit var database: FortuneDatabase
+
+    fun init(activity: AppCompatActivity) {
+        database = FortuneDatabase.getDatabase(activity, applicationScope)
+    }
+
     fun serveCardViewModel(activity: AppCompatActivity): CardViewModel {
-        val applicationScope = CoroutineScope(SupervisorJob())
-
-        val database = FortuneDatabase.getDatabase(activity, applicationScope)
-
         val repository = CardsRepository(database.cardDao())
 
         return ViewModelProvider(
