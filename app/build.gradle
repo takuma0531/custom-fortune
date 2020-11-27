@@ -14,7 +14,7 @@ android {
         targetSdkVersion 30
         versionCode 1
         versionName "1.0"
-
+        vectorDrawables.useSupportLibrary = true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -63,6 +63,7 @@ dependencies {
     implementation "androidx.room:room-runtime:$version_room"
     implementation "androidx.room:room-ktx:$version_room"
     kapt "androidx.room:room-compiler:$version_room"
+    testImplementation "androidx.room:room-testing:$version_room"
     implementation "androidx.lifecycle:lifecycle-extensions:$version_lifecycle_extensions"
 
     // ViewModel and LiveData

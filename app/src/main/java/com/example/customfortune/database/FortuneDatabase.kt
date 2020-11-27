@@ -12,28 +12,14 @@ import com.example.customfortune.database.color.ColorDao
 import com.example.customfortune.database.user.User
 import com.example.customfortune.database.user.UserDao
 import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-@Database(entities = [Card::class, Color::class, User::class], version = 1, exportSchema = false)
-public abstract class FortuneDatabase: RoomDatabase() {
+@Database(entities = [Card::class, Color::class, User::class], version = 1)
+public abstract class FortuneDatabase : RoomDatabase() {
     abstract fun cardDao(): CardDao
     abstract fun colorDao(): ColorDao
     abstract fun userDao(): UserDao
-
-    private class FortuneDatabaseCallBack(private val scope : CoroutineScope) : RoomDatabase.Callback() {
-        override fun onCreate(db: SupportSQLiteDatabase) {
-            super.onCreate(db)
-            INSTANCE?.let { database ->
-                scope.launch {
-                    val cardDao = database.cardDao()
-
-                    // populate sample data that user can edit later
-                    var card = Card("sample_image", "Excellent day")
-                    cardDao.insert(card)
-                }
-            }
-        }
-    }
 
     companion object {
         @Volatile
@@ -46,13 +32,29 @@ public abstract class FortuneDatabase: RoomDatabase() {
                     FortuneDatabase::class.java,
                     "fortune_database"
                 )
-                    .addCallback(FortuneDatabaseCallBack(scope))
+                    .fallbackToDestructiveMigration()
+                    .addCallback(FortuneDatabaseCallback(scope))
                     .build()
-
                 INSTANCE = instance
 
                 instance
             }
+        }
+
+        private class FortuneDatabaseCallback(private val scope: CoroutineScope) : RoomDatabase.Callback() {
+            override fun onCreate(db: SupportSQLiteDatabase) {
+                super.onCreate(db)
+                INSTANCE?.let {
+                    scope.launch(Dispatchers.IO) {
+                        populateDatabase(it.cardDao())
+                    }
+                }
+            }
+        }
+
+        suspend fun populateDatabase(cardDao: CardDao) {
+            val card = Card("sample_image", "Excellent day")
+            cardDao.insert(card)
         }
     }
 }

@@ -27,6 +27,6 @@
     <fragment
         android:id="@+id/fortuneListFragment"
         android:name="com.example.customfortune.uicontrollers.FortuneListFragment"
-        android:label="FortuneListFragment" />
+        android:label="@string/app_name" />
 
 </navigation>
