@@ -7,10 +7,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import com.example.customfortune.R
-import com.example.customfortune.databinding.FragmentAboutBinding
+import com.example.customfortune.databinding.FragmentSettingsBinding
 
 class SettingsFragment : Fragment() {
-    private lateinit var binding: FragmentAboutBinding
+    private lateinit var binding: FragmentSettingsBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
