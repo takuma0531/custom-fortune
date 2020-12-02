@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.os.bundleOf
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.observe
@@ -30,7 +29,7 @@ class FortuneListFragment : Fragment() {
 
         setupViewModel()
         setupRecyclerView()
-//        setupClickListenerOnEachItem()
+        setupClickListenerOnEachItem()
 
         return binding.root
     }
@@ -59,7 +58,7 @@ class FortuneListFragment : Fragment() {
     private fun setupClickListenerOnEachItem() {
         adapter?.setItemClickListener { card ->
             val action
-                    = FortuneListFragmentDirections.actionFortuneListFragmentToEditFortuneFragment(card)
+                    = FortuneListFragmentDirections.actionFortuneListFragmentToEditFortuneFragment(card.description)
             findNavController().navigate(action)
         }
     }

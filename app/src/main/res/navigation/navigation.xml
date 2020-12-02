@@ -50,6 +50,10 @@
             app:destination="@id/fortuneListFragment"
             app:popUpTo="@id/fortuneListFragment"
             app:popUpToInclusive="true" />
+        <argument
+            android:name="description"
+            app:argType="string"
+            android:defaultValue="Sample description" />
     </fragment>
     <fragment
         android:id="@+id/createFortuneFragment"

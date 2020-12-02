@@ -28,6 +28,6 @@ class EditFortuneFragment : Fragment() {
             EditFortuneFragmentArgs.fromBundle(arguments)
         }
 
-        binding.textEditDescriptionInput.setText(args?.card?.description)
+        binding.textEditDescriptionInput.setText(args?.description)
     }
 }
