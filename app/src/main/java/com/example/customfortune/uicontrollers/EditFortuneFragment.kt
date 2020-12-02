@@ -13,6 +13,7 @@ import com.example.customfortune.database.card.Card
 import com.example.customfortune.databinding.FragmentEditFortuneBinding
 import com.example.customfortune.utils.DependencyService
 import com.example.customfortune.viewmodels.CardViewModel
+import com.google.android.material.snackbar.Snackbar
 
 class EditFortuneFragment : Fragment() {
     private lateinit var binding: FragmentEditFortuneBinding
@@ -49,9 +50,11 @@ class EditFortuneFragment : Fragment() {
             val description = binding.textEditDescriptionInput.editableText.toString()
             // TODO: image
             val image = "sample img"
-            viewModel.update(Card(desc = description, img =  image))
+            viewModel.update(Card(description, image))
 
             findNavController().navigate(R.id.action_editFortuneFragment_to_fortuneListFragment)
+
+            Snackbar.make(requireView(), "Successfully updated", Snackbar.LENGTH_LONG).show()
         }
     }
 }
