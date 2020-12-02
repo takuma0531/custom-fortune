@@ -4,9 +4,11 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.observe
+import androidx.navigation.fragment.findNavController
 import com.example.customfortune.R
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.customfortune.MainActivity
@@ -27,11 +29,8 @@ class FortuneListFragment : Fragment() {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_fortune_list, container, false)
 
         setupViewModel()
-
-        val recyclerView = binding.fortuneList
-        adapter = CardListAdapter()
-        recyclerView.adapter = adapter
-        recyclerView.layoutManager = LinearLayoutManager(context)
+        setupRecyclerView()
+//        setupClickListenerOnEachItem()
 
         return binding.root
     }
@@ -42,13 +41,26 @@ class FortuneListFragment : Fragment() {
         viewModel.cards.observe(viewLifecycleOwner) { cards ->
             cards.let { adapter?.submitList(cards) }
         }
-
-        viewModel.cards.observe(viewLifecycleOwner){ cards ->
-            cards.let { adapter?.submitList(cards) }
-        }
     }
 
     private fun setupViewModel() {
         viewModel = DependencyService.serveCardViewModel((activity as MainActivity?)!!)
+    }
+
+    private fun setupRecyclerView() {
+        val recyclerView = binding.fortuneList
+        adapter = CardListAdapter()
+        recyclerView.apply {
+            adapter = adapter
+            layoutManager = LinearLayoutManager(context)
+        }
+    }
+
+    private fun setupClickListenerOnEachItem() {
+        adapter?.setItemClickListener { card ->
+            val action
+                    = FortuneListFragmentDirections.actionFortuneListFragmentToEditFortuneFragment(card)
+            findNavController().navigate(action)
+        }
     }
 }

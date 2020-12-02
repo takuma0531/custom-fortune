@@ -20,4 +20,14 @@ class EditFortuneFragment : Fragment() {
 
         return binding.root
     }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        val args = arguments?.let { arguments ->
+            EditFortuneFragmentArgs.fromBundle(arguments)
+        }
+
+        binding.textEditDescriptionInput.setText(args?.card?.description)
+    }
 }
