@@ -39,8 +39,12 @@ class FortuneListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel.cards.observe(viewLifecycleOwner) {
-            it.let { adapter?.submitList(it) }
+        viewModel.cards.observe(viewLifecycleOwner) { cards ->
+            cards.let { adapter?.submitList(cards) }
+        }
+
+        viewModel.cards.observe(viewLifecycleOwner){ cards ->
+            cards.let { adapter?.submitList(cards) }
         }
     }
 
