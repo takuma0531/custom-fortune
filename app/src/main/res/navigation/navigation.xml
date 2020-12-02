@@ -31,6 +31,9 @@
         <action
             android:id="@+id/action_fortuneListFragment_to_editFortuneFragment"
             app:destination="@id/editFortuneFragment" />
+        <action
+            android:id="@+id/action_fortuneListFragment_to_createFortuneFragment"
+            app:destination="@id/createFortuneFragment" />
     </fragment>
     <fragment
         android:id="@+id/settingsFragment"
@@ -46,6 +49,16 @@
             android:id="@+id/action_editFortuneFragment_to_fortuneListFragment"
             app:destination="@id/fortuneListFragment"
             app:popUpTo="@id/fortuneListFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/createFortuneFragment"
+        android:name="com.example.customfortune.uicontrollers.CreateFortuneFragment"
+        android:label="fragment_create_fortune"
+        tools:layout="@layout/fragment_create_fortune" >
+        <action
+            android:id="@+id/action_createFortuneFragment_to_fortuneListFragment"
+            app:destination="@id/fortuneListFragment"
             app:popUpToInclusive="true" />
     </fragment>
 
