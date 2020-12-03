@@ -29,6 +29,7 @@ class EditFortuneFragment : Fragment() {
 
         setupViewModel()
         clickUpdateButton()
+        clickRemoveButton()
 
         return binding.root
     }
@@ -60,9 +61,25 @@ class EditFortuneFragment : Fragment() {
             card.image = image
             viewModel.update(card)
 
-            findNavController().navigate(R.id.action_editFortuneFragment_to_fortuneListFragment)
+            Snackbar.make(requireView(), "Successfully updated!!", Snackbar.LENGTH_LONG).show()
 
-            Snackbar.make(requireView(), "Successfully updated", Snackbar.LENGTH_LONG).show()
+            findNavController().navigate(R.id.action_editFortuneFragment_to_fortuneListFragment)
+        }
+    }
+
+    private fun clickRemoveButton() {
+        binding.buttonRemoveCard.setOnClickListener {
+            viewModel.cards.observe(viewLifecycleOwner) { cards ->
+                if (cards.size < 5) {
+                    Snackbar.make(requireView(), "Cannot be removed when the number of fortunes is less than five.", Snackbar.LENGTH_LONG).show()
+                } else {
+                    viewModel.delete(card)
+
+                    Snackbar.make(requireView(), "Successfully removed!!.", Snackbar.LENGTH_LONG).show()
+
+                    findNavController().navigate(R.id.action_editFortuneFragment_to_fortuneListFragment)
+                }
+            }
         }
     }
 }
