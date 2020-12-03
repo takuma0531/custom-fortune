@@ -20,4 +20,6 @@
     <string name="text_create">Create</string>
     <string name="Sample">sample text</string>
     <string name="text_remove">Remove</string>
+    <string name="text_create">Create</string>
+    <string name="text_sample_description">Great day</string>
 </resources>

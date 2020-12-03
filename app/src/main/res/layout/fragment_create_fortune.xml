@@ -14,7 +14,7 @@
             android:layout_marginBottom="416dp"
             android:ems="10"
             android:inputType="textPersonName"
-            android:text="Name"
+            android:text="@string/text_sample_description"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.278"
@@ -44,10 +44,10 @@
             app:layout_constraintTop_toBottomOf="@+id/text_image_title" />
 
         <Button
-            android:id="@+id/button"
+            android:id="@+id/button_create_card"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Button"
+            android:text="@string/text_create"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.861"
