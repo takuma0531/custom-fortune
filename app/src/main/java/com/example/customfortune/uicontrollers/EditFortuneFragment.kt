@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.observe
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.fragment.findNavController
 import com.example.customfortune.MainActivity
@@ -18,6 +19,7 @@ import com.google.android.material.snackbar.Snackbar
 class EditFortuneFragment : Fragment() {
     private lateinit var binding: FragmentEditFortuneBinding
     private lateinit var viewModel: CardViewModel
+    private lateinit var card: Card
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -38,7 +40,11 @@ class EditFortuneFragment : Fragment() {
             EditFortuneFragmentArgs.fromBundle(arguments)
         }
 
-        binding.textEditDescriptionInput.setText(args?.description)
+        args.let { it ->
+            viewModel.get(it?.cardId!!).observe(viewLifecycleOwner) { card ->
+                binding.textEditDescriptionInput.setText(card.description)
+            }
+        }
     }
 
     private fun setupViewModel() {
@@ -49,8 +55,10 @@ class EditFortuneFragment : Fragment() {
         binding.buttonUpdateCard.setOnClickListener {
             val description = binding.textEditDescriptionInput.editableText.toString()
             // TODO: image
-            val image = "sample img"
-            viewModel.update(Card(description, image))
+            val image = "updated img"
+            card.description = description
+            card.image = image
+            viewModel.update(card)
 
             findNavController().navigate(R.id.action_editFortuneFragment_to_fortuneListFragment)
 

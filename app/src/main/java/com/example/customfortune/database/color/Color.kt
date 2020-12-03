@@ -8,5 +8,5 @@ import com.example.customfortune.R
 @Entity(tableName = "color_table")
 data class Color(val color: Int) {
     @PrimaryKey(autoGenerate = true)
-    val colorId: Long? = null
+    var colorId: Long? = null
 }

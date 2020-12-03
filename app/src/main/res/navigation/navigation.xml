@@ -51,9 +51,9 @@
             app:popUpTo="@id/fortuneListFragment"
             app:popUpToInclusive="true" />
         <argument
-            android:name="description"
-            app:argType="string"
-            android:defaultValue="Sample description" />
+            android:name="cardId"
+            app:argType="long"
+            android:defaultValue="1L" />
     </fragment>
     <fragment
         android:id="@+id/createFortuneFragment"
