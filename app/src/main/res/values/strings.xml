@@ -20,7 +20,14 @@
     <string name="text_create">Create</string>
     <string name="Sample">sample text</string>
     <string name="text_remove">Remove</string>
-    <string name="text_create">Create</string>
     <string name="text_sample_description">Great day</string>
     <string name="text_name">Name</string>
+    
+    <string-array name="array_color">
+        <item>Purple</item>
+        <item>Blue</item>
+        <item>Red</item>
+        <item>Yellow</item>
+        <item>Green</item>
+    </string-array>
 </resources>
