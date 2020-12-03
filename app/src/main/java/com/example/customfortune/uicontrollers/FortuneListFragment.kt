@@ -30,6 +30,7 @@ class FortuneListFragment : Fragment() {
         setupViewModel()
         setupRecyclerView()
         setupClickListenerOnEachItem()
+        clickCreateButton()
 
         return binding.root
     }
@@ -59,5 +60,9 @@ class FortuneListFragment : Fragment() {
                     = FortuneListFragmentDirections.actionFortuneListFragmentToEditFortuneFragment(card.cardId!!)
             findNavController().navigate(action)
         }
+    }
+
+    private fun clickCreateButton() {
+        findNavController().navigate(R.id.action_fortuneListFragment_to_createFortuneFragment)
     }
 }
