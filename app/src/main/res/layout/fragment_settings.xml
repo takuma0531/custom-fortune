@@ -37,7 +37,7 @@
             android:layout_marginTop="28dp"
             android:ems="10"
             android:inputType="textPersonName"
-            android:text="Name"
+            android:text="@string/text_name"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.442"
             app:layout_constraintStart_toStartOf="parent"
