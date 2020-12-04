@@ -6,7 +6,7 @@ import androidx.room.PrimaryKey
 import com.example.customfortune.R
 
 @Entity(tableName = "color_table")
-data class Color(val color: Int) {
+data class Color(var color: Int) {
     @PrimaryKey(autoGenerate = true)
-    var colorId: Long? = null
+    var colorId: Long? = 0
 }

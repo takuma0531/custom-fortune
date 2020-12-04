@@ -5,10 +5,13 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.observe
 import com.example.customfortune.MainActivity
 import com.example.customfortune.R
+import com.example.customfortune.database.color.Color
 import com.example.customfortune.database.user.User
 import com.example.customfortune.databinding.FragmentSettingsBinding
 import com.example.customfortune.utils.DependencyService
@@ -16,11 +19,12 @@ import com.example.customfortune.viewmodels.ColorViewModel
 import com.example.customfortune.viewmodels.UserViewModel
 import com.google.android.material.snackbar.Snackbar
 
-class SettingsFragment : Fragment() {
+class SettingsFragment : Fragment(), AdapterView.OnItemSelectedListener {
     private lateinit var binding: FragmentSettingsBinding
     private lateinit var userViewModel: UserViewModel
     private lateinit var colorViewModel: ColorViewModel
     private lateinit var user: User
+    private lateinit var color: Color
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -30,6 +34,7 @@ class SettingsFragment : Fragment() {
 
         setupViewModels()
         setName()
+        setColorSpinner()
         clickUpdateName()
 
         return binding.root
@@ -46,6 +51,27 @@ class SettingsFragment : Fragment() {
         }
     }
 
+    private fun setColorSpinner() {
+        val spinner = binding.spinnerFrameColor
+
+        ArrayAdapter.createFromResource(
+                (activity as MainActivity?)!!,
+                R.array.array_color,
+                R.layout.support_simple_spinner_dropdown_item
+        ).also { adapter ->
+            adapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item)
+            spinner.adapter = adapter
+        }
+
+        spinner.onItemSelectedListener = this
+
+        colorViewModel.get(1).observe(viewLifecycleOwner) { entity ->
+            color = entity
+
+            spinner.setSelection(color.color)
+        }
+    }
+
     private fun clickUpdateName() {
         val name = binding.inputUserName.editableText.toString()
         if (name.isEmpty()) {
@@ -56,11 +82,12 @@ class SettingsFragment : Fragment() {
         }
     }
 
-    private fun setColors() {
-
+    override fun onItemSelected(parent: AdapterView<*>, view: View?, pos: Int, id: Long) {
+        color.color = pos
+        colorViewModel.update(color)
     }
 
-    private fun changeColorSpinner() {
-
+    override fun onNothingSelected(parent: AdapterView<*>?) {
+        TODO("Not yet implemented")
     }
 }

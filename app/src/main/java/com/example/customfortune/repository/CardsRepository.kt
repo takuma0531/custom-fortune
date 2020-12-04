@@ -1,6 +1,7 @@
 package com.example.customfortune.repository
 
 import androidx.annotation.WorkerThread
+import androidx.lifecycle.LiveData
 import com.example.customfortune.database.card.Card
 import com.example.customfortune.database.card.CardDao
 import kotlinx.coroutines.flow.Flow
@@ -9,7 +10,7 @@ class CardsRepository(private val cardDao: CardDao) {
     val cards: Flow<List<Card>> = cardDao.getAll()
 
     @WorkerThread
-    fun get(key: Long): Flow<Card> {
+    fun get(key: Long): LiveData<Card> {
         return cardDao.get(key)
     }
 

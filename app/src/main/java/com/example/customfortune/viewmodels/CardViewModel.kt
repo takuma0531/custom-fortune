@@ -9,7 +9,7 @@ import kotlin.random.Random
 class CardViewModel(private val repository: CardsRepository): ViewModel() {
     val cards: LiveData<List<Card>> = repository.cards.asLiveData()
 
-    fun get(key: Long): LiveData<Card> =  repository.get(key).asLiveData()
+    fun get(key: Long): LiveData<Card> =  repository.get(key)
 
     fun insert(card: Card) = viewModelScope.launch {
         repository.insert(card)

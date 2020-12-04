@@ -7,5 +7,5 @@ import androidx.room.PrimaryKey
 @Entity(tableName = "user_table")
 data class User(var nickname: String) {
     @PrimaryKey(autoGenerate = true)
-    var userId: Long? = null
+    var userId: Long? = 0
 }
