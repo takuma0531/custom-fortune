@@ -10,7 +10,7 @@ import com.example.customfortune.repository.ColorsRepository
 import kotlinx.coroutines.launch
 
 class ColorViewModel(private val repository: ColorsRepository): ViewModel() {
-    fun get(key: Long): LiveData<Color> =  repository.get(key).asLiveData()
+    fun get(key: Long): LiveData<Color> =  repository.get(key)
 
     fun update(color: Color) = viewModelScope.launch {
         repository.update(color)

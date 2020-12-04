@@ -25,9 +25,8 @@
     
     <string-array name="array_color">
         <item>Purple</item>
-        <item>Blue</item>
-        <item>Red</item>
-        <item>Yellow</item>
-        <item>Green</item>
+        <item>Teal</item>
+        <item>Black</item>
+        <item>White</item>
     </string-array>
 </resources>
