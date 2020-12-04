@@ -13,10 +13,13 @@ import com.example.customfortune.databinding.FragmentResultBinding
 import com.example.customfortune.utils.DependencyService
 import com.example.customfortune.utils.FortuneItemService
 import com.example.customfortune.viewmodels.CardViewModel
+import com.example.customfortune.viewmodels.ColorViewModel
+import com.example.customfortune.viewmodels.UserViewModel
 
 class ResultFragment : Fragment() {
     private lateinit var binding: FragmentResultBinding
-    private lateinit var viewModel: CardViewModel
+    private lateinit var cardViewModel: CardViewModel
+    private lateinit var userViewModel: UserViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -24,20 +27,29 @@ class ResultFragment : Fragment() {
     ): View? {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_result, container, false)
 
-        viewModel = DependencyService.serveCardViewModel((activity as MainActivity?)!!)
+        setupViewModels()
         representRandomCard()
 
         return binding.root
     }
 
-    private fun representRandomCard() {
-            viewModel.cards.observe(viewLifecycleOwner) { cards ->
-                cards.let {
-                    val card = FortuneItemService.getRandomCard(cards)
+    private fun setupViewModels() {
+        cardViewModel = DependencyService.serveCardViewModel((activity as MainActivity?)!!)
+        userViewModel = DependencyService.serveUserViewModel((activity as MainActivity?)!!)
+    }
 
-                    binding.textResultDescription.text = card.description
-//                    binding.imageResult
-                }
+    private fun representRandomCard() {
+        cardViewModel.cards.observe(viewLifecycleOwner) { cards ->
+            cards.let {
+                val card = FortuneItemService.getRandomCard(cards)
+
+                binding.textResultDescription.text = card.description
+
+            }
+        }
+
+        userViewModel.get(1).observe(viewLifecycleOwner) { user ->
+            binding.textNickname.text = user.nickname
         }
     }
 }

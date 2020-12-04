@@ -54,12 +54,6 @@ class MainActivity : AppCompatActivity() {
         NavigationUI.setupWithNavController(binding.navView, navController)
     }
 
-    private fun setupThemeColor() {
-        colorViewModel.get(1).observe(this) { color ->
-            
-        }
-    }
-
     private fun setupDatabase() {
         DependencyService.getDatabase(this)
     }

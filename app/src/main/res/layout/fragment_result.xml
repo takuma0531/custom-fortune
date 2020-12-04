@@ -35,13 +35,24 @@
             android:id="@+id/text_result_description"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="lorem lorem"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginTop="76dp"
+            android:layout_marginEnd="124dp"
+            android:text="@string/description_each_fortune"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintHorizontal_bias="0.454"
+            app:layout_constraintStart_toEndOf="@+id/text_nickname"
+            app:layout_constraintTop_toBottomOf="@+id/image_result" />
+
+        <TextView
+            android:id="@+id/text_nickname"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="148dp"
+            android:text="@string/text_nickname"
+            app:layout_constraintBottom_toTopOf="@+id/button_return"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/image_result"
-            app:layout_constraintVertical_bias="0.244" />
+            app:layout_constraintVertical_bias="0.455" />
 
         <Button
             android:id="@+id/button_return"
@@ -50,7 +61,9 @@
             android:text="@string/text_restart"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.501"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/text_result_description" />
+            app:layout_constraintTop_toBottomOf="@+id/text_result_description"
+            app:layout_constraintVertical_bias="0.407" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

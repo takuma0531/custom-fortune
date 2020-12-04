@@ -22,7 +22,8 @@
     <string name="text_remove">Remove</string>
     <string name="text_sample_description">Great day</string>
     <string name="text_name">Name</string>
-    
+    <string name="text_nickname">Guest,</string>
+
     <string-array name="array_color">
         <item>Purple</item>
         <item>Teal</item>
