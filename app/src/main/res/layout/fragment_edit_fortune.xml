@@ -23,10 +23,10 @@
             android:id="@+id/text_fortune_description_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="84dp"
+            android:layout_marginTop="260dp"
             android:text="@string/text_fortune_description_title"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.09"
+            app:layout_constraintHorizontal_bias="0.045"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/text_image_title" />
 
@@ -34,11 +34,10 @@
             android:id="@+id/text_edit_description_input"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="416dp"
+            android:layout_marginTop="52dp"
             android:ems="10"
             android:inputType="text"
             android:text="@string/Sample"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.278"
             app:layout_constraintStart_toStartOf="parent"
@@ -51,10 +50,10 @@
             android:text="@string/button_update"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.861"
+            app:layout_constraintHorizontal_bias="0.95"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.499" />
+            app:layout_constraintTop_toBottomOf="@+id/text_edit_description_input"
+            app:layout_constraintVertical_bias="0.631" />
 
         <Button
             android:id="@+id/button_remove_card"
@@ -64,9 +63,42 @@
             android:text="@string/text_remove"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/button_update_card"
-            app:layout_constraintHorizontal_bias="0.587"
+            app:layout_constraintHorizontal_bias="0.861"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/text_edit_description_input"
-            app:layout_constraintVertical_bias="0.014" />
+            app:layout_constraintVertical_bias="0.442" />
+
+        <ImageView
+            android:id="@+id/image_fortune"
+            android:layout_width="150dp"
+            android:layout_height="144dp"
+            android:layout_marginStart="44dp"
+            app:layout_constraintBottom_toTopOf="@+id/text_fortune_description_title"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/text_image_title"
+            app:layout_constraintVertical_bias="0.512"
+            app:srcCompat="@drawable/ic_launcher_background" />
+
+        <Button
+            android:id="@+id/button_taking_photo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="26dp"
+            android:layout_marginBottom="20dp"
+            android:text="@string/text_take_photo"
+            app:layout_constraintBottom_toTopOf="@+id/button_choosing_photo"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.307"
+            app:layout_constraintStart_toEndOf="@+id/image_fortune"
+            app:layout_constraintTop_toTopOf="@+id/image_fortune" />
+
+        <Button
+            android:id="@+id/button_choosing_photo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/text_choose_photo"
+            app:layout_constraintBottom_toBottomOf="@+id/image_fortune"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/image_fortune" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

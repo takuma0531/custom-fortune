@@ -23,6 +23,8 @@
     <string name="text_sample_description">Great day</string>
     <string name="text_name">Name</string>
     <string name="text_nickname">Guest,</string>
+    <string name="text_take_photo">Take Photo</string>
+    <string name="text_choose_photo">Choose Photo</string>
 
     <string-array name="array_color">
         <item>Purple</item>
