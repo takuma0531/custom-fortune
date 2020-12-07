@@ -5,6 +5,7 @@ import android.Manifest.permission.READ_EXTERNAL_STORAGE
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
+import android.graphics.drawable.BitmapDrawable
 import android.os.Bundle
 import android.provider.MediaStore
 import androidx.fragment.app.Fragment
@@ -20,6 +21,7 @@ import com.example.customfortune.R
 import com.example.customfortune.database.card.Card
 import com.example.customfortune.databinding.FragmentCreateFortuneBinding
 import com.example.customfortune.utils.DependencyService
+import com.example.customfortune.utils.TypeConverter
 import com.example.customfortune.viewmodels.CardViewModel
 
 class CreateFortuneFragment : Fragment() {
@@ -49,7 +51,8 @@ class CreateFortuneFragment : Fragment() {
 
     private fun clickCreateButton() {
         // TODO:
-        val image = "sample image"
+        val bitmap = (binding.imageFortune.drawable as BitmapDrawable).bitmap
+        val image = TypeConverter.getStringFromBitmap(bitmap)
         val description = binding.textFortuneDescriptionTitle.editableText.toString()
         val card = Card(description, image)
 
@@ -124,6 +127,6 @@ class CreateFortuneFragment : Fragment() {
         super.onActivityResult(requestCode, resultCode, data)
 
         val bitmap = data?.extras?.get("data") as Bitmap
-        // TODO: interact with viewModel
+        binding.imageFortune.setImageBitmap(bitmap)
     }
 }
