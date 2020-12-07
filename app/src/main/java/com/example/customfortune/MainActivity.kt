@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.databinding.DataBindingUtil
 import androidx.drawerlayout.widget.DrawerLayout
-import androidx.lifecycle.observe
 import androidx.navigation.NavController
 import androidx.navigation.NavDestination
 import androidx.navigation.findNavController
@@ -13,7 +12,6 @@ import androidx.navigation.ui.NavigationUI
 import com.example.customfortune.databinding.ActivityMainBinding
 import com.example.customfortune.utils.DependencyService
 import com.example.customfortune.viewmodels.ColorViewModel
-import com.example.customfortune.viewmodels.UserViewModel
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
