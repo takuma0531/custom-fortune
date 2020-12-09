@@ -27,7 +27,7 @@
     <fragment
         android:id="@+id/fortuneListFragment"
         android:name="com.example.customfortune.uicontrollers.FortuneListFragment"
-        android:label="@string/app_name" >
+        android:label="@string/text_fortune_list">
         <action
             android:id="@+id/action_fortuneListFragment_to_editFortuneFragment"
             app:destination="@id/editFortuneFragment" />
@@ -43,8 +43,8 @@
     <fragment
         android:id="@+id/editFortuneFragment"
         android:name="com.example.customfortune.uicontrollers.EditFortuneFragment"
-        android:label="fragment_edit_fortune"
-        tools:layout="@layout/fragment_edit_fortune" >
+        android:label="@string/text_edit_fortune"
+        tools:layout="@layout/fragment_edit_fortune">
         <action
             android:id="@+id/action_editFortuneFragment_to_fortuneListFragment"
             app:destination="@id/fortuneListFragment"
@@ -52,14 +52,14 @@
             app:popUpToInclusive="true" />
         <argument
             android:name="cardId"
-            app:argType="long"
-            android:defaultValue="1L" />
+            android:defaultValue="1L"
+            app:argType="long" />
     </fragment>
     <fragment
         android:id="@+id/createFortuneFragment"
         android:name="com.example.customfortune.uicontrollers.CreateFortuneFragment"
-        android:label="fragment_create_fortune"
-        tools:layout="@layout/fragment_create_fortune" >
+        android:label="@string/text_create_fortune"
+        tools:layout="@layout/fragment_create_fortune">
         <action
             android:id="@+id/action_createFortuneFragment_to_fortuneListFragment"
             app:destination="@id/fortuneListFragment"

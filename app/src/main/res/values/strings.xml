@@ -25,6 +25,9 @@
     <string name="text_nickname">Guest,</string>
     <string name="text_take_photo">Take Photo</string>
     <string name="text_choose_photo">Choose Photo</string>
+    <string name="text_create_fortune">Create Fortune</string>
+    <string name="text_edit_fortune">Edit Fortune</string>
+    <string name="text_fortune_list">Fortune List</string>
 
     <string-array name="array_color">
         <item>Purple</item>

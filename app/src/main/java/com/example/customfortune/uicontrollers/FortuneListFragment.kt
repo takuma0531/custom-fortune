@@ -63,6 +63,8 @@ class FortuneListFragment : Fragment() {
     }
 
     private fun clickCreateButton() {
-        findNavController().navigate(R.id.action_fortuneListFragment_to_createFortuneFragment)
+        binding.buttonStartCreatingFortune.setOnClickListener {
+            findNavController().navigate(R.id.action_fortuneListFragment_to_createFortuneFragment)
+        }
     }
 }

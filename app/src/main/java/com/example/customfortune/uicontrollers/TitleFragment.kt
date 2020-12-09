@@ -29,10 +29,14 @@ class TitleFragment : Fragment() {
             view.findNavController().navigate(R.id.action_titleFragment_to_resultFragment)
         }
 
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
         setupColorViewModel()
         changeTitleColor()
-
-        return binding.root
     }
 
     private fun setupColorViewModel() {
@@ -40,7 +44,7 @@ class TitleFragment : Fragment() {
     }
 
     private fun changeTitleColor() {
-        colorViewModel.get(1).observe(viewLifecycleOwner) { color ->
+        colorViewModel.get(0).observe(viewLifecycleOwner) { color ->
             val colorInt = when (color.color) {
                 0 -> Color.parseColor("#FF6200EE")
                 1 -> Color.parseColor("#FF03DAC5")

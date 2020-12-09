@@ -50,13 +50,14 @@ class CreateFortuneFragment : Fragment() {
     }
 
     private fun clickCreateButton() {
-        // TODO:
-        val bitmap = (binding.imageFortune.drawable as BitmapDrawable).bitmap
-        val image = TypeConverter.getStringFromBitmap(bitmap)
-        val description = binding.textFortuneDescriptionTitle.editableText.toString()
-        val card = Card(description, image)
+        binding.buttonCreateCard.setOnClickListener {
+            val bitmap = TypeConverter.getBitmapFromDrawable(binding.imageFortune.drawable)
+            val image = TypeConverter.getStringFromBitmap(bitmap)
+            val description = binding.textFortuneDescriptionTitle.editableText.toString()
+            val card = Card(description, image)
 
-        viewModel.insert(card)
+            viewModel.insert(card)
+        }
     }
 
     private fun clickTakePhotoButton() {

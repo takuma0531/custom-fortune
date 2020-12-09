@@ -48,7 +48,7 @@ class ResultFragment : Fragment() {
             }
         }
 
-        userViewModel.get(1).observe(viewLifecycleOwner) { user ->
+        userViewModel.get(0).observe(viewLifecycleOwner) { user ->
             binding.textNickname.text = user.nickname
         }
     }
