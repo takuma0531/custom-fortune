@@ -47,8 +47,10 @@ class EditFortuneFragment : Fragment() {
         args.let { it ->
             viewModel.get(it?.cardId!!).observe(viewLifecycleOwner) { entity ->
                 card = entity
-                val bitmap = TypeConverter.getBitmapFromString(entity.image)
-                binding.imageFortune.setImageBitmap(bitmap)
+                if (card.image.isNotEmpty()) {
+                    val bitmap = TypeConverter.getBitmapFromString(entity.image)
+                    binding.imageFortune.setImageBitmap(bitmap)
+                }
                 binding.textEditDescriptionInput.setText(entity.description)
             }
         }
