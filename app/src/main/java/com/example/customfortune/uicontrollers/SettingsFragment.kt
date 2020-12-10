@@ -9,6 +9,7 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.observe
+import androidx.navigation.fragment.findNavController
 import com.example.customfortune.MainActivity
 import com.example.customfortune.R
 import com.example.customfortune.database.color.Color
@@ -46,8 +47,9 @@ class SettingsFragment : Fragment(), AdapterView.OnItemSelectedListener {
     }
 
     private fun setName() {
-        userViewModel.get(1).observe(viewLifecycleOwner) { entity ->
+        userViewModel.get(0).observe(viewLifecycleOwner) { entity ->
             user = entity
+            binding.textEditNameInput.setText(user.nickname)
         }
     }
 
@@ -65,7 +67,7 @@ class SettingsFragment : Fragment(), AdapterView.OnItemSelectedListener {
 
         spinner.onItemSelectedListener = this
 
-        colorViewModel.get(1).observe(viewLifecycleOwner) { entity ->
+        colorViewModel.get(0).observe(viewLifecycleOwner) { entity ->
             color = entity
 
             spinner.setSelection(color.color)
@@ -73,12 +75,16 @@ class SettingsFragment : Fragment(), AdapterView.OnItemSelectedListener {
     }
 
     private fun clickUpdateName() {
-        val name = binding.inputUserName.editableText.toString()
-        if (name.isEmpty()) {
-            Snackbar.make(requireView(), "Name cannot be empty.", Snackbar.LENGTH_LONG).show()
-        } else {
-            user.nickname = name
-            userViewModel.update(user)
+        binding.buttonUpdateName.setOnClickListener {
+            val name = binding.textEditNameInput.editableText.toString()
+            if (name.isEmpty()) {
+                Snackbar.make(requireView(), "Name cannot be empty.", Snackbar.LENGTH_LONG).show()
+            } else {
+                user.nickname = name
+                userViewModel.update(user)
+
+                Snackbar.make(requireView(), "Successfully updated!.", Snackbar.LENGTH_LONG).show()
+            }
         }
     }
 

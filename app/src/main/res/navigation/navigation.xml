@@ -63,6 +63,7 @@
         <action
             android:id="@+id/action_createFortuneFragment_to_fortuneListFragment"
             app:destination="@id/fortuneListFragment"
+            app:popUpTo="@id/fortuneListFragment"
             app:popUpToInclusive="true" />
     </fragment>
 

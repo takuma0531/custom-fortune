@@ -29,7 +29,7 @@ class CreateFortuneFragment : Fragment() {
     private lateinit var binding: FragmentCreateFortuneBinding
     private lateinit var viewModel: CardViewModel
 
-    private val REQUEST_CODE_CAMTURE: Int = 100
+    private val REQUEST_CODE_CAPTURE: Int = 100
     private val REQUEST_CODE_GALLERY: Int = 200
 
     override fun onCreateView(
@@ -53,7 +53,10 @@ class CreateFortuneFragment : Fragment() {
     private fun clickCreateButton() {
         binding.buttonCreateCard.setOnClickListener {
             val bitmap = (binding.imageFortune.drawable as BitmapDrawable).bitmap
-            val image = TypeConverter.getStringFromBitmap(bitmap)
+            var image: String = ""
+            if (bitmap != null) {
+                image = TypeConverter.getStringFromBitmap(bitmap)
+            }
             val description = binding.textEditDescriptionInput.editableText.toString()
             val card = Card(image, description)
 
@@ -67,13 +70,13 @@ class CreateFortuneFragment : Fragment() {
         binding.buttonTakingPhoto.setOnClickListener {
             if (checkPermission()) {
                 takePhoto()
-            } else requestPermission(REQUEST_CODE_CAMTURE)
+            } else requestPermission(REQUEST_CODE_CAPTURE)
         }
     }
 
     private fun takePhoto() {
         val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
-        startActivityForResult(intent, REQUEST_CODE_CAMTURE)
+        startActivityForResult(intent, REQUEST_CODE_CAPTURE)
     }
 
     private fun clickChooseButton() {
@@ -98,7 +101,7 @@ class CreateFortuneFragment : Fragment() {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
 
         when (requestCode) {
-            REQUEST_CODE_CAMTURE -> {
+            REQUEST_CODE_CAPTURE -> {
                 if ((grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED)
                         && grantResults[1] == PackageManager.PERMISSION_GRANTED) {
                  takePhoto()

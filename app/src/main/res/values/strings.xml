@@ -12,7 +12,7 @@
     <string name="description_each_fortune">description1</string>
     <string name="title_account">Account</string>
     <string name="text_label_account_name">User Name</string>
-    <string name="text_frame_color_title">Frame Color</string>
+    <string name="text_color_title">Title Color</string>
     <string name="title_settings">Settings</string>
     <string name="text_image_title">Image</string>
     <string name="text_fortune_description_title">Message</string>

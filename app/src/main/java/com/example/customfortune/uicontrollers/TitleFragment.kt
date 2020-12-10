@@ -36,7 +36,7 @@ class TitleFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         setupColorViewModel()
-        changeTitleColor()
+//        changeTitleColor()
     }
 
     private fun setupColorViewModel() {

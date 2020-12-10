@@ -16,7 +16,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.observeOn
 import kotlinx.coroutines.launch
 
-@Database(entities = [Card::class, Color::class, User::class], version = 1, exportSchema = false)
+@Database(entities = [Card::class, Color::class, User::class], version = 1)
 public abstract class FortuneDatabase : RoomDatabase() {
     abstract fun cardDao(): CardDao
     abstract fun colorDao(): ColorDao
@@ -56,8 +56,20 @@ public abstract class FortuneDatabase : RoomDatabase() {
         }
 
         suspend fun populateCards(cardDao: CardDao) {
-            val card = Card("", "Excellent day")
-            cardDao.insert(card)
+            val card1 = Card("", "Excellent day")
+            cardDao.insert(card1)
+            val card2 = Card("", "Nice day")
+            cardDao.insert(card2)
+            val card3 = Card("", "Wonderful day")
+            cardDao.insert(card3)
+            val card4 = Card("", "Good day")
+            cardDao.insert(card4)
+            val card5 = Card("", "Bad day")
+            cardDao.insert(card5)
+            val card6 = Card("", "A day")
+            cardDao.insert(card6)
+            val card7 = Card("", "Normal day")
+            cardDao.insert(card7)
         }
 
         suspend fun populateColor(colorDao: ColorDao) {

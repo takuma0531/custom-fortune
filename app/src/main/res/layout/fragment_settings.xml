@@ -31,7 +31,7 @@
             app:layout_constraintTop_toBottomOf="@+id/text_setting_account_title" />
 
         <EditText
-            android:id="@+id/input_user_name"
+            android:id="@+id/text_edit_name_input"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="28dp"
@@ -48,7 +48,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="244dp"
-            android:text="@string/text_frame_color_title"
+            android:text="@string/text_color_title"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.113"
             app:layout_constraintStart_toStartOf="parent"
@@ -70,14 +70,12 @@
             android:id="@+id/button_update_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="45dp"
             android:inputType="textShortMessage"
             android:text="@string/button_update"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.767"
+            app:layout_constraintHorizontal_bias="0.829"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/input_user_name"
-            app:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintTop_toBottomOf="@+id/text_edit_name_input" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
