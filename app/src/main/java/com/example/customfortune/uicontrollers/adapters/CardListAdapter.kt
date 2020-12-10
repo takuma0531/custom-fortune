@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.customfortune.R
 import com.example.customfortune.database.card.Card
+import com.example.customfortune.utils.TypeConverter
 
 class CardListAdapter : ListAdapter<Card, CardListAdapter.CardViewHolder>(CardComparator) {
     private var itemClickListener: ((Card) -> Unit)? = null
@@ -32,6 +33,10 @@ class CardListAdapter : ListAdapter<Card, CardListAdapter.CardViewHolder>(CardCo
         private val imageView: ImageView = itemView.findViewById(R.id.cardItemImage)
 
         fun bind(card: Card) {
+            if (card.image.isNotEmpty()) {
+                val bitmap = TypeConverter.getBitmapFromString(card.image)
+                imageView.setImageBitmap(bitmap)
+            }
             textView.text = card.description
 
             itemView.setOnClickListener {

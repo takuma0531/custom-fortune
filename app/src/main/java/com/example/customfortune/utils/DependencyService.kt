@@ -3,7 +3,6 @@ package com.example.customfortune.utils
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.example.customfortune.database.FortuneDatabase
-import com.example.customfortune.database.card.Card
 import com.example.customfortune.repository.CardsRepository
 import com.example.customfortune.repository.ColorsRepository
 import com.example.customfortune.repository.UsersRepository
@@ -15,7 +14,6 @@ import com.example.customfortune.viewmodels.ColorViewModel
 import com.example.customfortune.viewmodels.UserViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.SupervisorJob
-import kotlin.random.Random
 
 object DependencyService {
     private val applicationScope = CoroutineScope(SupervisorJob())

@@ -1,5 +1,7 @@
 package com.example.customfortune.uicontrollers
 
+import android.graphics.Bitmap
+import android.graphics.drawable.BitmapDrawable
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -13,6 +15,7 @@ import com.example.customfortune.R
 import com.example.customfortune.database.card.Card
 import com.example.customfortune.databinding.FragmentEditFortuneBinding
 import com.example.customfortune.utils.DependencyService
+import com.example.customfortune.utils.TypeConverter
 import com.example.customfortune.viewmodels.CardViewModel
 import com.google.android.material.snackbar.Snackbar
 
@@ -42,8 +45,11 @@ class EditFortuneFragment : Fragment() {
         }
 
         args.let { it ->
-            viewModel.get(it?.cardId!!).observe(viewLifecycleOwner) { card ->
-                binding.textEditDescriptionInput.setText(card.description)
+            viewModel.get(it?.cardId!!).observe(viewLifecycleOwner) { entity ->
+                card = entity
+                val bitmap = TypeConverter.getBitmapFromString(entity.image)
+                binding.imageFortune.setImageBitmap(bitmap)
+                binding.textEditDescriptionInput.setText(entity.description)
             }
         }
     }
@@ -54,11 +60,11 @@ class EditFortuneFragment : Fragment() {
 
     private fun clickUpdateButton() {
         binding.buttonUpdateCard.setOnClickListener {
+            val bitmap = (binding.imageFortune.drawable as BitmapDrawable).bitmap
+            card.image = TypeConverter.getStringFromBitmap(bitmap)
             val description = binding.textEditDescriptionInput.editableText.toString()
-            // TODO: image
-            val image = "updated img"
             card.description = description
-            card.image = image
+
             viewModel.update(card)
 
             Snackbar.make(requireView(), "Successfully updated!!", Snackbar.LENGTH_LONG).show()

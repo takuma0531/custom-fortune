@@ -44,16 +44,18 @@ class TitleFragment : Fragment() {
     }
 
     private fun changeTitleColor() {
-        colorViewModel.get(0).observe(viewLifecycleOwner) { color ->
-            val colorInt = when (color.color) {
-                0 -> Color.parseColor("#FF6200EE")
-                1 -> Color.parseColor("#FF03DAC5")
-                2 -> Color.parseColor("#FF000000")
-                3 -> Color.parseColor("#FFFFFFFF")
-                else -> Color.parseColor("#FF6200EE")
-            }
+        colorViewModel.get(0).let {
+            it.observe(viewLifecycleOwner) { color ->
+                val colorInt = when (color.color) {
+                    0 -> Color.parseColor("#FF6200EE")
+                    1 -> Color.parseColor("#FF03DAC5")
+                    2 -> Color.parseColor("#FF000000")
+                    3 -> Color.parseColor("#FFFFFFFF")
+                    else -> Color.parseColor("#FF6200EE")
+                }
 
-            binding.textTitle.setTextColor(colorInt)
+                binding.textTitle.setTextColor(colorInt)
+            }
         }
     }
 }

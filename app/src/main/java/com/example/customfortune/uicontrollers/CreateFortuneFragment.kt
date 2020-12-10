@@ -16,6 +16,7 @@ import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
+import androidx.navigation.fragment.findNavController
 import com.example.customfortune.MainActivity
 import com.example.customfortune.R
 import com.example.customfortune.database.card.Card
@@ -51,12 +52,14 @@ class CreateFortuneFragment : Fragment() {
 
     private fun clickCreateButton() {
         binding.buttonCreateCard.setOnClickListener {
-            val bitmap = TypeConverter.getBitmapFromDrawable(binding.imageFortune.drawable)
+            val bitmap = (binding.imageFortune.drawable as BitmapDrawable).bitmap
             val image = TypeConverter.getStringFromBitmap(bitmap)
-            val description = binding.textFortuneDescriptionTitle.editableText.toString()
-            val card = Card(description, image)
+            val description = binding.textEditDescriptionInput.editableText.toString()
+            val card = Card(image, description)
 
             viewModel.insert(card)
+
+            findNavController().navigate(R.id.action_createFortuneFragment_to_fortuneListFragment)
         }
     }
 
@@ -126,8 +129,9 @@ class CreateFortuneFragment : Fragment() {
     // called after startActivityForResult
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-
-        val bitmap = data?.extras?.get("data") as Bitmap
-        binding.imageFortune.setImageBitmap(bitmap)
+        if (data != null) {
+            val bitmap = data.extras?.get("data") as Bitmap
+            binding.imageFortune.setImageBitmap(bitmap)
+        }
     }
 }

@@ -56,7 +56,7 @@ public abstract class FortuneDatabase : RoomDatabase() {
         }
 
         suspend fun populateCards(cardDao: CardDao) {
-            val card = Card("sample_image", "Excellent day")
+            val card = Card("", "Excellent day")
             cardDao.insert(card)
         }
 

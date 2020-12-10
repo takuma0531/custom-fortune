@@ -9,7 +9,7 @@ interface ColorDao {
     @Query("SELECT * from color_table WHERE colorId = :key")
     fun get(key: Long): LiveData<Color>
 
-    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(color: Color)
 
     @Update(onConflict = OnConflictStrategy.IGNORE)

@@ -9,7 +9,7 @@ interface UserDao {
     @Query("SELECT * from user_table WHERE userId = :key")
     fun get(key: Long): LiveData<User>
 
-    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(user: User)
 
     @Update(onConflict = OnConflictStrategy.IGNORE)
