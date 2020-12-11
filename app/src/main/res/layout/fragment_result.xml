@@ -12,47 +12,34 @@
             android:id="@+id/text_result_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="168dp"
+            android:layout_marginTop="104dp"
             android:text="@string/text_result_title"
+            android:textSize="@dimen/title_text_size"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
             android:id="@+id/image_result"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="68dp"
+            android:layout_width="227dp"
+            android:layout_height="163dp"
+            android:layout_marginTop="36dp"
             android:contentDescription="@string/text_image_alt"
-            app:srcCompat="@drawable/ic_launcher_foreground"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/text_result_title" />
+            app:layout_constraintTop_toBottomOf="@+id/text_result_title"
+            app:srcCompat="@drawable/ic_launcher_foreground" />
 
         <TextView
             android:id="@+id/text_result_description"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="76dp"
-            android:layout_marginEnd="124dp"
+            android:layout_marginTop="84dp"
+            android:layout_marginEnd="148dp"
             android:text="@string/description_each_fortune"
+            android:textSize="@dimen/title_text_size"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.454"
-            app:layout_constraintStart_toEndOf="@+id/text_nickname"
             app:layout_constraintTop_toBottomOf="@+id/image_result" />
-
-        <TextView
-            android:id="@+id/text_nickname"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="148dp"
-            android:text="@string/text_nickname"
-            app:layout_constraintBottom_toTopOf="@+id/button_return"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/image_result"
-            app:layout_constraintVertical_bias="0.455" />
 
         <Button
             android:id="@+id/button_return"
@@ -61,9 +48,8 @@
             android:text="@string/text_restart"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.501"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/text_result_description"
-            app:layout_constraintVertical_bias="0.407" />
+            app:layout_constraintVertical_bias="0.318" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

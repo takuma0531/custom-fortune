@@ -14,6 +14,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
             android:text="@string/text_image_title"
+            android:textSize="@dimen/title_text_size"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.045"
             app:layout_constraintStart_toStartOf="parent"
@@ -23,10 +24,11 @@
             android:id="@+id/text_fortune_description_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="260dp"
+            android:layout_marginTop="264dp"
             android:text="@string/text_fortune_description_title"
+            android:textSize="@dimen/title_text_size"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.045"
+            app:layout_constraintHorizontal_bias="0.048"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/text_image_title" />
 
@@ -38,6 +40,7 @@
             android:ems="10"
             android:inputType="text"
             android:text="@string/Sample"
+            android:textSize="@dimen/title_text_size"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.278"
             app:layout_constraintStart_toStartOf="parent"
@@ -50,23 +53,23 @@
             android:text="@string/button_update"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.95"
+            app:layout_constraintHorizontal_bias="0.896"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/text_edit_description_input"
-            app:layout_constraintVertical_bias="0.631" />
+            app:layout_constraintVertical_bias="0.287" />
 
         <Button
             android:id="@+id/button_remove_card"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="89dp"
+            android:layout_marginBottom="164dp"
             android:text="@string/text_remove"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/button_update_card"
-            app:layout_constraintHorizontal_bias="0.861"
+            app:layout_constraintHorizontal_bias="0.916"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/text_edit_description_input"
-            app:layout_constraintVertical_bias="0.442" />
+            app:layout_constraintVertical_bias="0.972" />
 
         <ImageView
             android:id="@+id/image_fortune"

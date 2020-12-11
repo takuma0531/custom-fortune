@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.observe
+import androidx.navigation.fragment.findNavController
 import com.example.customfortune.MainActivity
 import com.example.customfortune.R
 import com.example.customfortune.databinding.FragmentResultBinding
@@ -36,6 +37,7 @@ class ResultFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         representRandomCard()
+        clickRestart()
     }
 
     private fun representRandomCard() {
@@ -54,9 +56,15 @@ class ResultFragment : Fragment() {
         userViewModel.get(0)?.let {
             it.observe(viewLifecycleOwner) { user ->
                 user.let {
-                    binding.textNickname.text = user.nickname
+                    binding.textResultTitle.text = user.nickname + "'s " + "Fortune"
                 }
             }
+        }
+    }
+
+    private fun clickRestart() {
+        binding.buttonReturn.setOnClickListener {
+            findNavController().navigate(R.id.action_resultFragment_self)
         }
     }
 }

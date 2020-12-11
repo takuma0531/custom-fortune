@@ -14,6 +14,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="44dp"
             android:text="@string/title_account"
+            android:textSize="@dimen/title_text_size"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.105"
             app:layout_constraintStart_toStartOf="parent"
@@ -23,10 +24,11 @@
             android:id="@+id/setting_account_name_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="36dp"
+            android:layout_marginTop="24dp"
             android:text="@string/text_label_account_name"
+            android:textSize="@dimen/title_text_size"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.228"
+            app:layout_constraintHorizontal_bias="0.246"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/text_setting_account_title" />
 
@@ -34,23 +36,38 @@
             android:id="@+id/text_edit_name_input"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="28dp"
+            android:layout_marginTop="24dp"
             android:ems="10"
             android:inputType="textPersonName"
             android:text="@string/text_name"
+            android:textSize="@dimen/title_text_size"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.442"
+            app:layout_constraintHorizontal_bias="0.44"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/setting_account_name_title" />
+
+        <Button
+            android:id="@+id/button_update_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="textShortMessage"
+            android:text="@string/button_update"
+            app:layout_constraintBottom_toTopOf="@+id/text_frame_color_title"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.907"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/text_edit_name_input"
+            app:layout_constraintVertical_bias="0.238" />
 
         <TextView
             android:id="@+id/text_frame_color_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="244dp"
+            android:layout_marginTop="236dp"
             android:text="@string/text_color_title"
+            android:textSize="@dimen/title_text_size"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.113"
+            app:layout_constraintHorizontal_bias="0.109"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/text_setting_account_title" />
 
@@ -61,21 +78,9 @@
             android:layout_marginTop="32dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.184"
+            app:layout_constraintHorizontal_bias="0.212"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/text_frame_color_title"
             app:layout_constraintVertical_bias="0.0" />
-
-        <Button
-            android:id="@+id/button_update_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:inputType="textShortMessage"
-            android:text="@string/button_update"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.829"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/text_edit_name_input" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
