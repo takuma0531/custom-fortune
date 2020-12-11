@@ -22,10 +22,10 @@ import com.example.customfortune.MainActivity
 import com.example.customfortune.R
 import com.example.customfortune.database.card.Card
 import com.example.customfortune.databinding.FragmentEditFortuneBinding
-import com.example.customfortune.utils.DependencyService
 import com.example.customfortune.utils.TypeConverter
 import com.example.customfortune.viewmodels.CardViewModel
 import com.google.android.material.snackbar.Snackbar
+import java.lang.Exception
 
 class EditFortuneFragment : Fragment() {
     private lateinit var binding: FragmentEditFortuneBinding
@@ -41,7 +41,8 @@ class EditFortuneFragment : Fragment() {
     ): View? {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_edit_fortune, container, false)
 
-        setupViewModel()
+        viewModel = (activity as MainActivity?)!!.cardViewModel
+
         clickUpdateButton()
         clickRemoveButton()
         clickTakePhotoButton()
@@ -58,48 +59,58 @@ class EditFortuneFragment : Fragment() {
         }
 
         args.let { it ->
-            viewModel.get(it?.cardId!!).observe(viewLifecycleOwner) { entity ->
-                card = entity
-                if (card.image.isNotEmpty()) {
-                    val bitmap = TypeConverter.getBitmapFromString(entity.image)
-                    binding.imageFortune.setImageBitmap(bitmap)
+            viewModel.get(it?.cardId!!)?.let {
+                it.observe(viewLifecycleOwner) { entity ->
+                    card = entity
+                    if (card.image.isNotEmpty()) {
+                        val bitmap = TypeConverter.getBitmapFromString(entity.image)
+                        binding.imageFortune.setImageBitmap(bitmap)
+                    }
+                    binding.textEditDescriptionInput.setText(entity.description)
                 }
-                binding.textEditDescriptionInput.setText(entity.description)
             }
         }
     }
 
-    private fun setupViewModel() {
-        viewModel = DependencyService.serveCardViewModel((activity as MainActivity?)!!)
-    }
-
     private fun clickUpdateButton() {
-        binding.buttonUpdateCard.setOnClickListener {
-            val bitmap = (binding.imageFortune.drawable as BitmapDrawable).bitmap
-            card.image = TypeConverter.getStringFromBitmap(bitmap)
-            val description = binding.textEditDescriptionInput.editableText.toString()
-            card.description = description
 
-            viewModel.update(card)
+            binding.buttonUpdateCard.setOnClickListener {
+                val drawable = binding.imageFortune.drawable
 
-            Snackbar.make(requireView(), "Successfully updated!!", Snackbar.LENGTH_LONG).show()
+                if (drawable != null) {
+                    try {
+                        val bitmap = (drawable as BitmapDrawable).bitmap
+                        card.image = TypeConverter.getStringFromBitmap(bitmap)
 
-            findNavController().navigate(R.id.action_editFortuneFragment_to_fortuneListFragment)
+                        val description = binding.textEditDescriptionInput.editableText.toString()
+                        card.description = description
+
+                        viewModel.update(card)
+
+                        Snackbar.make(requireView(), "Successfully updated!!", Snackbar.LENGTH_LONG).show()
+
+                        findNavController().navigate(R.id.action_editFortuneFragment_to_fortuneListFragment)
+                    } catch (e: Exception) {
+                        Snackbar.make(requireView(), "Some error occurred.", Snackbar.LENGTH_LONG).show()
+                    }
+                }
         }
     }
 
     private fun clickRemoveButton() {
         binding.buttonRemoveCard.setOnClickListener {
-            viewModel.cards.observe(viewLifecycleOwner) { cards ->
-                if (cards.size < 5) {
-                    Snackbar.make(requireView(), "Cannot be removed when the number of fortunes is less than five.", Snackbar.LENGTH_LONG).show()
-                } else {
-                    viewModel.delete(card)
+            viewModel.cards?.let {
+                  it.observe(viewLifecycleOwner) { cards ->
+                      if (cards.size < 5) {
+                          Snackbar.make(requireView(), "Cannot be removed when the number of fortunes is less than five.", Snackbar.LENGTH_LONG).show()
+                      } else {
+                          viewModel.delete(card)
 
-                    Snackbar.make(requireView(), "Successfully removed!!.", Snackbar.LENGTH_LONG).show()
+                          Snackbar.make(requireView(), "Successfully removed!!.", Snackbar.LENGTH_LONG).show()
 
-                    findNavController().navigate(R.id.action_editFortuneFragment_to_fortuneListFragment)
-                }
+                          findNavController().navigate(R.id.action_editFortuneFragment_to_fortuneListFragment)
+                      }
+                  }
             }
         }
     }

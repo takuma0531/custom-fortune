@@ -13,7 +13,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.customfortune.MainActivity
 import com.example.customfortune.databinding.FragmentFortuneListBinding
 import com.example.customfortune.uicontrollers.adapters.CardListAdapter
-import com.example.customfortune.utils.DependencyService
 import com.example.customfortune.viewmodels.CardViewModel
 
 class FortuneListFragment : Fragment() {
@@ -27,7 +26,7 @@ class FortuneListFragment : Fragment() {
     ): View? {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_fortune_list, container, false)
 
-        setupViewModel()
+        viewModel = (activity as MainActivity?)!!.cardViewModel
         setupRecyclerView()
         setupClickListenerOnEachItem()
         clickCreateButton()
@@ -38,13 +37,11 @@ class FortuneListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel.cards.observe(viewLifecycleOwner) { cards ->
-            cards.let { adapter?.submitList(cards) }
+        viewModel.cards?.let {
+              it.observe(viewLifecycleOwner) { cards ->
+                  cards.let { adapter?.submitList(cards) }
+              }
         }
-    }
-
-    private fun setupViewModel() {
-        viewModel = DependencyService.serveCardViewModel((activity as MainActivity?)!!)
     }
 
     private fun setupRecyclerView() {

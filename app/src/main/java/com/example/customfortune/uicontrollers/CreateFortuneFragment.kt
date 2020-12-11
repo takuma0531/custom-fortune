@@ -24,6 +24,8 @@ import com.example.customfortune.databinding.FragmentCreateFortuneBinding
 import com.example.customfortune.utils.DependencyService
 import com.example.customfortune.utils.TypeConverter
 import com.example.customfortune.viewmodels.CardViewModel
+import com.google.android.material.snackbar.Snackbar
+import java.lang.Exception
 
 class CreateFortuneFragment : Fragment() {
     private lateinit var binding: FragmentCreateFortuneBinding
@@ -38,7 +40,8 @@ class CreateFortuneFragment : Fragment() {
     ): View? {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_create_fortune, container, false)
 
-        setupViewModel()
+        viewModel = (activity as MainActivity?)!!.cardViewModel
+
         clickCreateButton()
         clickTakePhotoButton()
         clickChooseButton()
@@ -46,24 +49,29 @@ class CreateFortuneFragment : Fragment() {
         return binding.root
     }
 
-    private fun setupViewModel() {
-        viewModel = DependencyService.serveCardViewModel((activity as MainActivity?)!!)
-    }
-
     private fun clickCreateButton() {
-        binding.buttonCreateCard.setOnClickListener {
-            val bitmap = (binding.imageFortune.drawable as BitmapDrawable).bitmap
-            var image: String = ""
-            if (bitmap != null) {
-                image = TypeConverter.getStringFromBitmap(bitmap)
+            binding.buttonCreateCard.setOnClickListener {
+                var image: String = ""
+                val drawable = binding.imageFortune.drawable
+
+                if (drawable != null) {
+                    try {
+                        val bitmap = (drawable as BitmapDrawable).bitmap
+                        if (bitmap != null) {
+                            image = TypeConverter.getStringFromBitmap(bitmap)
+                        }
+                    } catch (e: Exception) {
+                    Snackbar.make(requireView(), "Some error occurred.", Snackbar.LENGTH_LONG).show()
+                    }
+                }
+
+                val description = binding.textEditDescriptionInput.editableText.toString()
+                val card = Card(image, description)
+
+                viewModel.insert(card)
+
+                findNavController().navigate(R.id.action_createFortuneFragment_to_fortuneListFragment)
             }
-            val description = binding.textEditDescriptionInput.editableText.toString()
-            val card = Card(image, description)
-
-            viewModel.insert(card)
-
-            findNavController().navigate(R.id.action_createFortuneFragment_to_fortuneListFragment)
-        }
     }
 
     private fun clickTakePhotoButton() {

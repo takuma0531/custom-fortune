@@ -12,7 +12,6 @@ import androidx.navigation.findNavController
 import com.example.customfortune.MainActivity
 import com.example.customfortune.R
 import com.example.customfortune.databinding.FragmentTitleBinding
-import com.example.customfortune.utils.DependencyService
 import com.example.customfortune.viewmodels.ColorViewModel
 
 class TitleFragment : Fragment() {
@@ -25,6 +24,8 @@ class TitleFragment : Fragment() {
     ): View? {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_title, container,false)
 
+        colorViewModel = (activity as MainActivity?)!!.colorViewModel
+
         binding.buttonStart.setOnClickListener { view: View ->
             view.findNavController().navigate(R.id.action_titleFragment_to_resultFragment)
         }
@@ -35,26 +36,23 @@ class TitleFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        setupColorViewModel()
-//        changeTitleColor()
-    }
-
-    private fun setupColorViewModel() {
-        colorViewModel = DependencyService.serveColorViewModel((activity as MainActivity?)!!)
+        changeTitleColor()
     }
 
     private fun changeTitleColor() {
-        colorViewModel.get(0).let {
+        colorViewModel.get(0)?.let {
             it.observe(viewLifecycleOwner) { color ->
-                val colorInt = when (color.color) {
-                    0 -> Color.parseColor("#FF6200EE")
-                    1 -> Color.parseColor("#FF03DAC5")
-                    2 -> Color.parseColor("#FF000000")
-                    3 -> Color.parseColor("#FFFFFFFF")
-                    else -> Color.parseColor("#FF6200EE")
-                }
+                color.let {
+                    val colorInt = when (color.color) {
+                        0 -> Color.parseColor("#FF6200EE")
+                        1 -> Color.parseColor("#FF03DAC5")
+                        2 -> Color.parseColor("#FF000000")
+                        3 -> Color.parseColor("#FFFFFFFF")
+                        else -> Color.parseColor("#FF6200EE")
+                    }
 
-                binding.textTitle.setTextColor(colorInt)
+                    binding.textTitle.setTextColor(colorInt)
+                }
             }
         }
     }

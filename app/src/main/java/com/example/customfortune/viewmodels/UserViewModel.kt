@@ -9,7 +9,7 @@ import com.example.customfortune.repository.UsersRepository
 import kotlinx.coroutines.launch
 
 class UserViewModel(private val repository: UsersRepository): ViewModel() {
-    fun get(key: Long): LiveData<User> =  repository.get(key)
+    fun get(key: Long): LiveData<User>? =  repository.get(key)
 
     fun insert(user: User) = viewModelScope.launch {
         repository.insert(user)

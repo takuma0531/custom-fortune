@@ -9,21 +9,27 @@ import androidx.navigation.NavDestination
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.NavigationUI
+import com.example.customfortune.database.FortuneDatabase
 import com.example.customfortune.databinding.ActivityMainBinding
 import com.example.customfortune.utils.DependencyService
+import com.example.customfortune.viewmodels.CardViewModel
 import com.example.customfortune.viewmodels.ColorViewModel
+import com.example.customfortune.viewmodels.UserViewModel
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.SupervisorJob
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var appBarConfiguration : AppBarConfiguration
-    private lateinit var cardViewModel: ColorViewModel
-    private lateinit var colorViewModel: ColorViewModel
+    private val applicationScope = CoroutineScope(SupervisorJob())
+    lateinit var cardViewModel: CardViewModel
+    lateinit var colorViewModel: ColorViewModel
+    lateinit var userViewModel: UserViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
 
-        setupDatabase()
         setupViewModels()
         setupNavigation()
     }
@@ -52,12 +58,10 @@ class MainActivity : AppCompatActivity() {
         NavigationUI.setupWithNavController(binding.navView, navController)
     }
 
-    private fun setupDatabase() {
-        DependencyService.getDatabase(this)
-    }
-
     private fun setupViewModels() {
-        cardViewModel = DependencyService.serveColorViewModel(this)
-        colorViewModel = DependencyService.serveColorViewModel(this)
+        val database = FortuneDatabase.getDatabase(this, applicationScope)
+        cardViewModel = DependencyService.serveCardViewModel(database,this)
+        colorViewModel = DependencyService.serveColorViewModel(database, this)
+        userViewModel = DependencyService.serveUserViewModel(database, this)
     }
 }

@@ -10,10 +10,9 @@ import androidx.lifecycle.observe
 import com.example.customfortune.MainActivity
 import com.example.customfortune.R
 import com.example.customfortune.databinding.FragmentResultBinding
-import com.example.customfortune.utils.DependencyService
 import com.example.customfortune.utils.FortuneItemService
+import com.example.customfortune.utils.TypeConverter
 import com.example.customfortune.viewmodels.CardViewModel
-import com.example.customfortune.viewmodels.ColorViewModel
 import com.example.customfortune.viewmodels.UserViewModel
 
 class ResultFragment : Fragment() {
@@ -27,29 +26,37 @@ class ResultFragment : Fragment() {
     ): View? {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_result, container, false)
 
-        setupViewModels()
-        representRandomCard()
+        cardViewModel = (activity as MainActivity?)!!.cardViewModel
+        userViewModel = (activity as MainActivity?)!!.userViewModel
 
         return binding.root
     }
 
-    private fun setupViewModels() {
-        cardViewModel = DependencyService.serveCardViewModel((activity as MainActivity?)!!)
-        userViewModel = DependencyService.serveUserViewModel((activity as MainActivity?)!!)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        representRandomCard()
     }
 
     private fun representRandomCard() {
-        cardViewModel.cards.observe(viewLifecycleOwner) { cards ->
-            cards.let {
-                val card = FortuneItemService.getRandomCard(cards)
+        cardViewModel.cards?.let {
+            it.observe(viewLifecycleOwner) { cards ->
+                cards.let {
+                    val card = FortuneItemService.getRandomCard(cards)
 
-                binding.textResultDescription.text = card.description
-
+                    binding.textResultDescription.text = card.description
+                    val bitmap = TypeConverter.getBitmapFromString(card.image)
+                    binding.imageResult.setImageBitmap(bitmap)
+                }
             }
         }
 
-        userViewModel.get(0).observe(viewLifecycleOwner) { user ->
-            binding.textNickname.text = user.nickname
+        userViewModel.get(0)?.let {
+            it.observe(viewLifecycleOwner) { user ->
+                user.let {
+                    binding.textNickname.text = user.nickname
+                }
+            }
         }
     }
 }

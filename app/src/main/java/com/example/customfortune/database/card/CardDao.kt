@@ -12,8 +12,8 @@ interface CardDao {
     @Query("SELECT * from card_table WHERE cardId = :key")
     fun get(key: Long): LiveData<Card>
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insert(card: Card)
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    suspend fun insert(card: Card): Long
 
     @Update(onConflict = OnConflictStrategy.IGNORE)
     suspend fun update(card: Card)

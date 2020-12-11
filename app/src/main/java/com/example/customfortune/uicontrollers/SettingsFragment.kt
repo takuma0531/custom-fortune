@@ -9,13 +9,11 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.observe
-import androidx.navigation.fragment.findNavController
 import com.example.customfortune.MainActivity
 import com.example.customfortune.R
 import com.example.customfortune.database.color.Color
 import com.example.customfortune.database.user.User
 import com.example.customfortune.databinding.FragmentSettingsBinding
-import com.example.customfortune.utils.DependencyService
 import com.example.customfortune.viewmodels.ColorViewModel
 import com.example.customfortune.viewmodels.UserViewModel
 import com.google.android.material.snackbar.Snackbar
@@ -33,23 +31,28 @@ class SettingsFragment : Fragment(), AdapterView.OnItemSelectedListener {
     ): View? {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_settings, container, false)
 
-        setupViewModels()
-        setName()
-        setColorSpinner()
-        clickUpdateName()
+        userViewModel = (activity as MainActivity?)!!.userViewModel
+        colorViewModel = (activity as MainActivity?)!!.colorViewModel
 
         return binding.root
     }
 
-    private fun setupViewModels() {
-        userViewModel = DependencyService.serveUserViewModel((activity as MainActivity?)!!)
-        colorViewModel = DependencyService.serveColorViewModel((activity as MainActivity?)!!)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        setName()
+        setColorSpinner()
+        clickUpdateName()
     }
 
     private fun setName() {
-        userViewModel.get(0).observe(viewLifecycleOwner) { entity ->
-            user = entity
-            binding.textEditNameInput.setText(user.nickname)
+        userViewModel.get(0)?.let {
+            it.observe(viewLifecycleOwner) { entity ->
+                  entity.let {
+                      user = entity
+                      binding.textEditNameInput.setText(user.nickname)
+                  }
+            }
         }
     }
 
@@ -65,12 +68,13 @@ class SettingsFragment : Fragment(), AdapterView.OnItemSelectedListener {
             spinner.adapter = adapter
         }
 
-        spinner.onItemSelectedListener = this
+        colorViewModel.get(0)?.let {
+             it.observe(viewLifecycleOwner) { entity ->
+                 color = entity
 
-        colorViewModel.get(0).observe(viewLifecycleOwner) { entity ->
-            color = entity
-
-            spinner.setSelection(color.color)
+                 spinner.onItemSelectedListener = this
+                 spinner.setSelection(color.color)
+             }
         }
     }
 

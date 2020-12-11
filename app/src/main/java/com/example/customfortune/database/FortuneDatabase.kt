@@ -33,9 +33,9 @@ public abstract class FortuneDatabase : RoomDatabase() {
                     FortuneDatabase::class.java,
                     "fortune_database"
                 )
-                    .fallbackToDestructiveMigration()
-                    .addCallback(FortuneDatabaseCallback(scope))
-                    .build()
+                        .fallbackToDestructiveMigration()
+                        .addCallback(FortuneDatabaseCallback(scope))
+                        .build()
                 INSTANCE = instance
 
                 instance
@@ -57,19 +57,22 @@ public abstract class FortuneDatabase : RoomDatabase() {
 
         suspend fun populateCards(cardDao: CardDao) {
             val card1 = Card("", "Excellent day")
-            cardDao.insert(card1)
             val card2 = Card("", "Nice day")
-            cardDao.insert(card2)
             val card3 = Card("", "Wonderful day")
-            cardDao.insert(card3)
             val card4 = Card("", "Good day")
-            cardDao.insert(card4)
             val card5 = Card("", "Bad day")
-            cardDao.insert(card5)
             val card6 = Card("", "A day")
-            cardDao.insert(card6)
             val card7 = Card("", "Normal day")
-            cardDao.insert(card7)
+
+            cardDao.apply {
+                insert(card1)
+                insert(card2)
+                insert(card3)
+                insert(card4)
+                insert(card5)
+                insert(card6)
+                insert(card7)
+            }
         }
 
         suspend fun populateColor(colorDao: ColorDao) {
