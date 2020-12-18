@@ -47,8 +47,10 @@ class ResultFragment : Fragment() {
                     val card = FortuneItemService.getRandomCard(cards)
 
                     binding.textResultDescription.text = card.description
-                    val bitmap = TypeConverter.getBitmapFromString(card.image)
-                    binding.imageResult.setImageBitmap(bitmap)
+                    card.image?.let {
+                        val bitmap = TypeConverter.getBitmapFromString(card.image)
+                        binding.imageResult.setImageBitmap(bitmap)
+                    }
                 }
             }
         }
